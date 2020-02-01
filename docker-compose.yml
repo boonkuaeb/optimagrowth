@@ -1,9 +1,59 @@
-version: '3.7'
- 
+version: '2.1'
+
 services:
-  licensingservice:
-    image: ostock/licensing-service:0.0.1-SNAPSHOT
+#  licensingservice:
+#    image: ostock/licensing-service:0.0.1-SNAPSHOT
+#    ports:
+#      - "8080:8080"
+#    environment:
+#      - "SPRING_PROFILES_ACTIVE=dev"
+
+  # $ mongo
+#  mongodb:
+#    image: mongo:3.6.9
+#    mem_limit: 350m
+#    networks:
+#      - licensing-network
+#    ports:
+#      - "27017:27017"
+#    command: mongod --smallfiles
+#    healthcheck:
+#      test: "mongo --eval 'db.stats().ok'"
+#      interval: 20s
+#      timeout: 5s
+#      retries: 10
+
+  # $ mysql -uroot -h127.0.0.1 -p
+  mysql:
+    image: mysql:8.0.19
+    mem_limit: 350m
+    networks:
+      - licensing-network
     ports:
-      - "8080:8080"
+      - "3306:3306"
     environment:
-       - "SPRING_PROFILES_ACTIVE=dev"
+      - MYSQL_ROOT_PASSWORD=rootpwd
+    healthcheck:
+      test: "/usr/bin/mysql --user=root --password=rootpwd --execute \"SHOW DATABASES;\""
+      interval: 20s
+      timeout: 5s
+      retries: 10
+#
+#  rabbitmq:
+#    image: rabbitmq:3.7.8-management
+#    mem_limit: 350m
+#    networks:
+#      - licensing-network
+#    ports:
+#      - 5672:5672
+#      - 15672:15672
+#    healthcheck:
+#      test: ["CMD", "rabbitmqctl", "status"]
+#      interval: 20s
+#      timeout: 5s
+#      retries: 10
+#
+
+networks:
+  licensing-network:
+    name: licensing-network
