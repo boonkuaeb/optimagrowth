@@ -23,17 +23,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         // Set configuration on the auth object
         auth.jdbcAuthentication()
                 .dataSource(dataSource)
-                .withDefaultSchema()
-                .withUser(
-                        User.withUsername("foo")
-                                .password("bar")
-                                .roles("USER")
-                ).
-                withUser(
-                        User.withUsername("admin")
-                                .password("admin")
-                                .roles("ADMIN")
-                );
+                .usersByUsernameQuery(
+                        "select username,password, enabled from users where username=?")
+                .authoritiesByUsernameQuery(
+                        "select username, role from user_roles where username=?");
     }
 
     @Override
