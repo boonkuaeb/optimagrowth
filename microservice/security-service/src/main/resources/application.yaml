@@ -7,12 +7,9 @@ management.health.diskspace.enabled: true
 
 server.port: 8081
 
-
-#
-#spring.jpa.hibernate.ddl-auto: none
-#
-#spring.datasource:
-#  url: 'jdbc:mysql://localhost/security?useSSL=false'
-#  username: root
-#  password: rootpwd
-
+spring.datasource.url: jdbc:mysql://localhost:3306/security
+spring.datasource.username: root
+spring.datasource.password: rootpwd
+spring.jpa.hibernate.ddl-auto: update
+spring.jpa.hibernate.naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
+spring.jpa.properties.hibernate.dialect: org.hibernate.dialect.MySQL5Dialect
