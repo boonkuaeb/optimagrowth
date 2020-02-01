@@ -11,4 +11,15 @@ public class Home {
     {
         return "<div>Home Resource</div>";
     }
+
+    @GetMapping("/user")
+    public String user()
+    {
+        return "<div>Home Resource user</div>";
+    }
+    @GetMapping("/admin")
+    public String admin()
+    {
+        return "<div>Home Resource admin</div>";
+    }
 }
