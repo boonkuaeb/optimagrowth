@@ -13,3 +13,6 @@ spring.datasource.password: rootpwd
 spring.jpa.hibernate.ddl-auto: update
 spring.jpa.hibernate.naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
 spring.jpa.properties.hibernate.dialect: org.hibernate.dialect.MySQL5Dialect
+
+
+app.secret_key: "devp38kxxok64c(%0#ipkfhu*f--$sidm#tr2@z06j#fya+dp7wzqbk"
